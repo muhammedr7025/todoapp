@@ -3,8 +3,10 @@ from .forms import TodoForm
 from .models import Todo
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 # Create your views here.
+@login_required(login_url='/login')
 def todo_creation(request,id=0):
     if request.method == "GET":
         if id==0:
@@ -24,11 +26,11 @@ def todo_creation(request,id=0):
         if form.is_valid():
             form.save()
         return redirect('todolist')
-
+@login_required(login_url='/login')
 def todo_list(request):
     context={'todolist':Todo.objects.all()}
     return render(request,'todo_list.html',context)
-
+@login_required(login_url='/login')
 def todo_delete(request,id):
     todo=Todo.objects.get(pk=id)
     todo.delete()
@@ -58,7 +60,7 @@ def todo_signup(request):
             auth.login(request,user)
             return redirect('todolist')
 
-
+@login_required(login_url='/login')
 def todo_profile(request):
     return render(request,'profile.html')
 def todo_logout(request):
