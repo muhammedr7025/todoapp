@@ -1,5 +1,100 @@
-{%extends './base.html'%} {%block content%}
-<h3>Username={{user.username}}</h3>
-<br /><br />
-<a href="{%url 'logout'%}">LOG OUT</a>
-{%endblock content%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        max-width: 400px;
+        padding: 30px 20px;
+        background-color: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h3 {
+        color: #333;
+      }
+
+      .profile-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+        color: #007bff;
+      }
+
+      .button-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .go-back-button,
+      .logout-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+
+      .go-back-button:hover,
+      .logout-button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Add this CSS to ensure text color remains white on hover */
+      .go-back-button:hover,
+      .logout-button:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      a {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        text-decoration: none;
+        color: #007bff;
+        font-weight: 500;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <i class="fas fa-user-circle profile-icon"></i>
+      <h3>Username: {{ user.username }}</h3>
+      <div class="button-row">
+        <a href="javascript:history.back()" class="go-back-button">Go Back</a>
+        <a href="{% url 'logout' %}" class="logout-button">LOG OUT</a>
+      </div>
+    </div>
+  </body>
+</html>
