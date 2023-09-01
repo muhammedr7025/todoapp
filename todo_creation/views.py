@@ -30,3 +30,12 @@ def todo_delete(request,id):
     todo=Todo.objects.get(pk=id)
     todo.delete()
     return redirect('todolist')
+
+def todo_login(request):
+    return render(request,'login.html')
+
+def todo_signup(request):
+    return render(request,'signup.html')
+
+def todo_profile(request):
+    return render(request,'profile.html')

@@ -1,0 +1,9 @@
+{%extends './base.html'%} {%block content%}
+<form action="" method="post">
+  <input type="email" name="emai" id="email" />
+  <input type="password" name="password" id="password" /><br /><br />
+
+  <button type="submit" class="btn btn-success">Submit</button>
+  <a href="{%url 'todo_signup'%}">Register</a>
+</form>
+{%endblock content%}
