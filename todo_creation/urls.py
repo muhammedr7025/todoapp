@@ -7,5 +7,6 @@ urlpatterns = [
     path('tododelete/<int:id>', views.todo_delete,name='todo_delete'),
     path('login',views.todo_login,name='todo_login'),
     path('signup',views.todo_signup,name='todo_signup'),
-    path('profile',views.todo_profile,name='profile')
+    path('profile',views.todo_profile,name='profile'),
+    path('logout',views.todo_logout,name='logout')
 ]

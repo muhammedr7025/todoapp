@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from .forms import TodoForm
 from .models import Todo
+from django.contrib.auth.models import User
+from django.contrib import auth
+from django.contrib.auth import logout
 # Create your views here.
 def todo_creation(request,id=0):
     if request.method == "GET":
@@ -32,10 +35,32 @@ def todo_delete(request,id):
     return redirect('todolist')
 
 def todo_login(request):
-    return render(request,'login.html')
+    if request.method=='GET':
+        return render(request,'login.html')
+    else:
+        user = auth.authenticate(username=request.POST['username'],password=request.POST['password'])
+        if user is not None:
+            print(user)
+            auth.login(request,user)
+            return redirect('todolist')
+        else:
+            return render(request,'login.html',{'error':'Username or password is incorrect!'})
 
 def todo_signup(request):
-    return render(request,'signup.html')
+    if request.method=='GET':
+        return render(request,'signup.html')
+    else:
+        try:
+            User.objects.get(username=request.POST['username'])
+            return render(request,'signup.html',{'error':'Username is already taken!'})
+        except User.DoesNotExist:
+            user=User.objects.create_user(request.POST['username'],password=request.POST['password'])
+            auth.login(request,user)
+            return redirect('todolist')
+
 
 def todo_profile(request):
     return render(request,'profile.html')
+def todo_logout(request):
+     logout(request)
+     return redirect("todo_login")

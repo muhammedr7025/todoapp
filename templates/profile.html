@@ -1,1 +1,5 @@
-{%extends './base.html'%} {%block content%} {%endblock content%}
+{%extends './base.html'%} {%block content%}
+<h3>Username={{user.username}}</h3>
+<br /><br />
+<a href="{%url 'logout'%}">LOG OUT</a>
+{%endblock content%}
