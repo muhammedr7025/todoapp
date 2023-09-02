@@ -73,6 +73,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'todoapp.wsgi.application'
 
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

@@ -14,7 +14,7 @@ def todo_creation(request,id=0):
             form=TodoForm()
         else:
             todo=Todo.objects.get(pk=id)
-            form=TodoForm(instance=todo)
+            form=TodoForm(instance=todo) 
         return render(request,'todo_form.html',{'form':form})
     else:
         if id==0:
