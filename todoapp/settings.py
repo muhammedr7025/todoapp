@@ -85,10 +85,11 @@ STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'todo',
+        'NAME': 'railway',
         'USER':'postgres',
-        'PASSWORD':'1234',
-        'HOST':'localhost'
+        'PASSWORD':'CdoNoEjNnShEmmvphrdO',
+        'HOST':'containers-us-west-48.railway.app',
+        'PORT':'7463',
     }
 }
 
