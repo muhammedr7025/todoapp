@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-(xg!fto01)fm(@(qrz%%lh@mw(yl6@zf98qws13-bqg73hqu&!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://todoapp-noship-nobuild.up.railway.app']
+
 LOGIN_URL= '/login'
 
 # Application definition
@@ -133,3 +133,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app','https://*.127.0.0.1']
+
+CORS_ALLOW_ALL_ORIGINS = True
