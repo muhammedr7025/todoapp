@@ -73,7 +73,7 @@
       <form method="POST">
         {% csrf_token %}
         <div class="form-group">
-          <label for="{{ form.title.id }}">Title:</label>
+          <label for="{{ form.title.id }}">Task:</label>
           {{ form.title }}
         </div>
         <div class="form-group">
@@ -84,6 +84,11 @@
           <label for="{{ form.date.id }}">Date:</label>
           {{ form.date }}
         </div>
+        <div class="form-group">
+          <label for="{{ form.date.id }}">Status:</label>
+          {{ form.status }}
+        </div>
+        <input type="hidden" name="user" value="{{ user.id }}" />
         <button type="submit" class="btn btn-success">Submit</button>
       </form>
     </div>

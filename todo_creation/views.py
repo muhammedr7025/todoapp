@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+import datetime
 # Create your views here.
 @login_required(login_url='/login')
 def todo_creation(request,id=0):
@@ -17,18 +18,25 @@ def todo_creation(request,id=0):
         return render(request,'todo_form.html',{'form':form})
     else:
         if id==0:
-            print('haii')
             form=TodoForm(request.POST)
-            print(request.POST)
+            userid=request.user.id
+            form.user=userid
+            print(form.data)
+            print(form)
+            
         else:
             todo=Todo.objects.get(pk=id)
             form=TodoForm(request.POST,instance=todo)
         if form.is_valid():
             form.save()
+            print('formsaved')
         return redirect('todolist')
 @login_required(login_url='/login')
 def todo_list(request):
-    context={'todolist':Todo.objects.all()}
+    today = datetime.date.today()
+    outdate=Todo.objects.filter(user=request.user.id, date__lt=today)
+    print(outdate)
+    context={'todolist':Todo.objects.filter(user=request.user.id),'outdate':outdate}
     return render(request,'todo_list.html',context)
 @login_required(login_url='/login')
 def todo_delete(request,id):

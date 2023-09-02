@@ -60,7 +60,13 @@
         margin-bottom: 10px;
         background-color: #fff;
       }
-
+      .todo-item-out {
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #d57878;
+      }
       .label {
         font-weight: bold;
         color: #333;
@@ -156,12 +162,43 @@
       </div>
       {% for todo in todolist %}
       <div class="todo-item">
-        <div class="label">Title:</div>
+        <div class="label">Task:</div>
         <div class="todo-title">{{ todo.title }}</div>
         <div class="label">Description:</div>
         <div class="todo-desc">{{ todo.desc }}</div>
         <div class="label">Date:</div>
         <div class="todo-date">{{ todo.date }}</div>
+        <div class="label">Status:</div>
+        {%if todo.status%}
+        <div class="todo-date">Completed</div>
+        {%else%}
+        <div class="todo-date">Not completed</div>
+        {%endif%}
+        <div class="todo-actions">
+          <a href="{% url 'todo_update' todo.id %}" class="edit-button"
+            ><i class="fas fa-edit"></i>Edit</a
+          >
+          <a href="{% url 'todo_delete' todo.id %}" class="delete-button"
+            ><i class="fas fa-trash-alt"></i>Delete</a
+          >
+        </div>
+      </div>
+      {% endfor %}
+      <h1>Expired list</h1>
+      {% for todo in outdate %}
+      <div class="todo-item-out">
+        <div class="label">Task:</div>
+        <div class="todo-title">{{ todo.title }}</div>
+        <div class="label">Description:</div>
+        <div class="todo-desc">{{ todo.desc }}</div>
+        <div class="label">Date:</div>
+        <div class="todo-date">{{ todo.date }}</div>
+        <div class="label">Status:</div>
+        {%if todo.status%}
+        <div class="todo-date">Completed</div>
+        {%else%}
+        <div class="todo-date">Not completed</div>
+        {%endif%}
         <div class="todo-actions">
           <a href="{% url 'todo_update' todo.id %}" class="edit-button"
             ><i class="fas fa-edit"></i>Edit</a
